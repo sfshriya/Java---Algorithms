@@ -1,0 +1,51 @@
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Random;
+
+public class BubbleSort {
+
+    static Duration bubbleSort(int x) {
+        int A[] = new int[x];
+        Random rand = new Random();
+        for (int i = 0; i < A.length; i++) {
+            A[i] = rand.nextInt(50);
+        }
+        int N = A.length;
+        Boolean swapped = true;
+        Instant start = Instant.now();
+        while (swapped == true) {
+            swapped = false;
+            for (int i = 1; i < N; i++) {
+                if (A[i - 1] > A[i]) {
+                    A[i - 1] = A[i - 1] + A[i];
+                    A[i] = A[i - 1] - A[i];
+                    A[i - 1] = A[i - 1] - A[i];
+                    swapped = true;
+                }
+            }
+        }
+        return Duration.between(start, Instant.now());
+
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("Time taken to sort 10000  elements by bubble sort " + bubbleSort(10000));
+        System.out.println("Time taken to sort 20000  elements by bubble sort " + bubbleSort(20000));
+        System.out.println("Time taken to sort 40000  elements by bubble sort " + bubbleSort(40000));
+        System.out.println("Time taken to sort 80000  elements by bubble sort " + bubbleSort(80000));
+        System.out.println("Time taken to sort 160000 elements by bubble sort " + bubbleSort(160000));
+    }
+
+}
+
+/*
+        Time taken to sort 10000  elements by bubble sort PT0.307S
+        Time taken to sort 20000  elements by bubble sort PT1.313S
+        Time taken to sort 40000  elements by bubble sort PT4.902S
+        Time taken to sort 80000  elements by bubble sort PT19.449S
+        Time taken to sort 160000 elements by bubble sort PT1M17.383S
+        
+        Algorithm     Best    Average   Worst   Space Complexity
+        Bubble Sort	  Ω(n)	  Θ(n^2)	  O(n^2)	    O(1)
+*/

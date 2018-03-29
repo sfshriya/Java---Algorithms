@@ -1,0 +1,98 @@
+import java.time.Duration;
+
+import java.time.Instant;
+
+import java.util.Random;
+
+import java.util.*;
+
+
+public class Main {
+
+
+    static Duration selectionSort(int x) {
+ 
+        int A[] = new int[x];
+         
+        Random rand = new Random();
+
+        for (int i = 0; i < A.length; i++) {
+
+            A[i] = rand.nextInt(50);
+
+        }
+
+        Instant start = Instant.now();
+        
+        for(int i = 0 ; i <= A.length - 1 ; i++ ) {
+          
+          int minumum = A[i];
+          
+          int minumumIndex = i;
+          
+          boolean flag = false;
+          
+          for(int j = i + 1 ; j < A.length ; j++){
+             
+              if( A[j] < minumum ){
+                
+                minumum = A[j];
+                
+                minumumIndex = j;
+              
+                flag = true;
+              }
+          } if(true){
+          
+            int temp = minumum;
+            
+            A[minumumIndex] = A[i];
+            
+            A[i] = temp;
+          }
+         
+        }
+      
+
+        return Duration.between(start, Instant.now());
+
+    }
+
+
+
+    public static void main(String[] args) {
+      
+      System.out.println("Time taken to sort 10000  elements by bubble sort " + selectionSort(10000));
+
+        System.out.println("Time taken to sort 20000  elements by bubble sort " + selectionSort(20000));
+
+        System.out.println("Time taken to sort 40000  elements by bubble sort " + selectionSort(40000));
+
+        System.out.println("Time taken to sort 80000  elements by bubble sort " + selectionSort(80000));
+
+        System.out.println("Time taken to sort 160000 elements by bubble sort " + selectionSort(160000));
+
+    }
+
+
+}
+
+
+/*
+
+        Time taken to sort 10000  elements by bubble sort PT0.184S
+        
+        Time taken to sort 20000  elements by bubble sort PT0.64S
+        
+        Time taken to sort 40000  elements by bubble sort PT2.227S
+        
+        Time taken to sort 80000  elements by bubble sort PT7.636S
+        
+        Time taken to sort 160000 elements by bubble sort PT11.627S
+
+
+        Algorithm     Best    Average   Worst   Space Complexity
+
+        Bubble Sort	  Ω(n)	  Θ(n^2)	  O(n^2)	    O(1)
+
+*/
